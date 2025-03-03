@@ -9,25 +9,66 @@
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
         }
         .sidebar {
-            background-color: #6f4a8e;
+            background-color: #1aa7e3;
             color: white;
             min-height: 100vh;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            width: 250px;
         }
         .sidebar a {
             color: white;
             text-decoration: none;
-            display: block;
-            padding: 10px;
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            font-size: 1.1rem;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            margin-bottom: 8px;
         }
         .sidebar a:hover {
-            background-color: #5a3b76;
+            background-color: #08acf3;
+        }
+        .sidebar a i {
+            margin-right: 15px;
+            font-size: 1.3rem;
+        }
+        .sidebar .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .sidebar .sidebar-header {
+            text-align: center;
+            margin-bottom: 20px;
         }
         .dashboard-header {
-            background-color: #6f4a8e;
+            background-color: #1aa7e3;
             color: white;
             padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .dashboard-header h2 {
+            font-size: 2rem;
+        }
+        .dashboard-header input {
+            width: 50%;
+            max-width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
         }
         .card img {
             height: 200px;
@@ -38,6 +79,63 @@
             top: 10px;
             right: 10px;
         }
+        .sidebar-toggle {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #1aa7e3;
+            color: white;
+            padding: 10px;
+            border: none;
+            font-size: 1.2rem;
+            z-index: 1001;
+        }
+        .close-sidebar-btn {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #1aa7e3;
+            color: white;
+            border: none;
+            font-size: 1.8rem;
+            padding: 10px;
+        }
+        .main-content {
+            margin-left: 250px;
+            transition: margin-left 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                left: -250px;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+            }
+            .dashboard-header h2 {
+                font-size: 1.0rem;
+                margin-top: 15px;
+            }
+            .dashboard-header input {
+                width: 100%;
+                margin-top: 10px;
+            }
+            .sidebar-toggle {
+                display: block;
+            }
+            .close-sidebar-btn {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -45,25 +143,39 @@
         <div class="row">
             <!-- Sidebar -->
             <nav class="col-md-2 sidebar p-3">
-                <h4>Oreo</h4>
-                <img src="https://static.vecteezy.com/system/resources/previews/043/900/708/non_2x/user-profile-icon-illustration-vector.jpg" class="img-fluid rounded-circle mb-2" width="80" alt="Profile">
-                <h5>Michael</h5>
-                <p>Agent</p>
-                <a href="index.html">Dashboard</a>
-                <a href="property.html">Property</a>
-                <a href="type.html">Types</a>
-                <a href="agent.html">Agents</a>
-                <a href="#">Contracts</a>
-                <a href="#">App</a>
-                <a href="#">Groups</a>
-                <a href="#">File Manager</a>
+                <button class="close-sidebar-btn" onclick="toggleSidebar()" aria-label="Close Sidebar">×</button>
+                <div class="sidebar-header">
+                    <h4>Oreo</h4>
+                    <img src="https://static.vecteezy.com/system/resources/previews/043/900/708/non_2x/user-profile-icon-illustration-vector.jpg" class="profile-img" alt="Profile">
+                    <h5>Michael</h5>
+                    <p>Agent</p>
+                </div>
+                <a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="property.html"><i class="fas fa-building"></i> Property</a>
+                <a href="type.html"><i class="fas fa-cogs"></i> Types</a>
+                <a href="agent.html"><i class="fas fa-users"></i> Agents</a>
+                <!-- Contracts Section -->
+                <a class="nav-item" data-bs-toggle="collapse" href="#contractsOptions" role="button" aria-expanded="false" aria-controls="contractsOptions"><i class="fas fa-file-contract"></i> Contracts</a>
+                <div class="collapse" id="contractsOptions">
+                    <ul class="nav flex-column ms-3">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="contract-form.html">→ Contract Form</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="contract-list.html">→ Contract List</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#"><i class="fas fa-cogs"></i> App</a>
+                <a href="#"><i class="fas fa-users-cog"></i> Groups</a>
+                <a href="#"><i class="fas fa-file"></i> File Manager</a>
             </nav>
-            
+
             <!-- Main content -->
-            <main class="col-md-10">
-                <div class="dashboard-header d-flex justify-content-between align-items-center">
-                    <h2>Apartment</h2>
-                    <input type="text" class="form-control w-25" placeholder="Search...">
+            <main class="col-md-10 main-content">
+                <div class="dashboard-header sticky-top">
+                    <h2 class="ms-5">Apartment</h2>
+                    <input type="text" class="form-control" placeholder="Search...">
                 </div>
                 
                 <div class="row mt-3">
@@ -179,7 +291,16 @@
             </main>
         </div>
     </div>
-    
+
+    <!-- Toggle Sidebar Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open Sidebar">☰</button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+            document.querySelector('.main-content').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

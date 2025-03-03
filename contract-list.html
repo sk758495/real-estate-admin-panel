@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Contract List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -178,75 +178,74 @@
                 <a href="#"><i class="fas fa-users-cog"></i> Groups</a>
                 <a href="#"><i class="fas fa-file"></i> File Manager</a>
             </nav>
-
+            
             <!-- Main content -->
-            <main class="col-md-10 main-content ">
+            <main class="col-md-10 main-content">
                 <div class="dashboard-header">
-                    <h2 class="ms-5">Dashboard</h2>
-                    <input type="text" class="form-control" placeholder="Search...">
+                    <h2>Contract List</h2>
+                    <input type="text" class="form-control w-25" placeholder="Search...">
                 </div>
-
-                <div class="row mt-3">
-                    <div class="col-12 col-md-3 mb-4">
-                        <div class="card">
-                            <div class="card-header">Properties</div>
-                            <div class="card-body">
-                                <h3>62</h3>
-                                <span class="badge bg-success">NEW 40</span>
-                                <span class="badge bg-danger">SOLD 22</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3 mb-4">
-                        <div class="card">
-                            <div class="card-header">Sellers</div>
-                            <div class="card-body">
-                                <h3>20</h3>
-                                <span class="badge bg-success">ACTIVE 13</span>
-                                <span class="badge bg-danger">INACTIVE 7</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3 mb-4">
-                        <div class="card">
-                            <div class="card-header">Buyers</div>
-                            <div class="card-body">
-                                <h3>70</h3>
-                                <span class="badge bg-success">ACTIVE 45</span>
-                                <span class="badge bg-danger">INACTIVE 25</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3 mb-4">
-                        <div class="card">
-                            <div class="card-header">Transactions</div>
-                            <div class="card-body">
-                                <h3>$43M</h3>
-                                <span class="badge bg-success">USD $40M</span>
-                                <span class="badge bg-danger">RS. 50K</span>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="table-responsive mt-3">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>NAME</th>
+                                <th>MOBILE</th>
+                                <th>CITY</th>
+                                <th>ROLL</th>
+                                <th>RATING</th>
+                                <th>DEAL</th>
+                                <th>VALUE</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AD5417</td>
+                                <td>Gary Camara</td>
+                                <td>+502-324-7391</td>
+                                <td>San Jose</td>
+                                <td>Plumber</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td>23</td>
+                                <td>$1,800</td>
+                                <td><button class="btn btn-outline-primary">Send Inquiry</button></td>
+                            </tr>
+                            <tr>
+                                <td>AS1245</td>
+                                <td>Karen Ella Boyette</td>
+                                <td>+502-324-4194</td>
+                                <td>New York</td>
+                                <td>Electrician</td>
+                                <td>⭐⭐⭐</td>
+                                <td>53</td>
+                                <td>$2,800</td>
+                                <td><button class="btn btn-outline-primary">Send Inquiry</button></td>
+                            </tr>
+                            <tr>
+                                <td>BH1919</td>
+                                <td>Tom Wilson</td>
+                                <td>+502-324-7193</td>
+                                <td>Los Angeles</td>
+                                <td>Floor Cleaner</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td>87</td>
+                                <td>$4,250</td>
+                                <td><button class="btn btn-outline-primary">Send Inquiry</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                <div class="row mt-4">
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header">Total Properties</div>
-                            <div class="card-body">
-                                <canvas id="pieChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header">Graph this year</div>
-                            <div class="card-body">
-                                <canvas id="barChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <nav>
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
             </main>
         </div>
     </div>
@@ -254,41 +253,8 @@
     <!-- Toggle Sidebar Button -->
     <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Open Sidebar">☰</button>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const ctx1 = document.getElementById('pieChart').getContext('2d');
-        new Chart(ctx1, {
-            type: 'doughnut',
-            data: {
-                labels: ['Commercial', 'Residential', 'Purchased', 'Rented'],
-                datasets: [{
-                    data: [20, 30, 25, 25],
-                    backgroundColor: ['#ff4b5c', '#ff9966', '#4cb5f5', '#6f4a8e']
-                }]
-            }
-        });
-
-        const ctx2 = document.getElementById('barChart').getContext('2d');
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [
-                    {
-                        label: 'Buying',
-                        backgroundColor: '#6f4a8e',
-                        data: [100, 80, 200, 180, 150, 170]
-                    },
-                    {
-                        label: 'Selling',
-                        backgroundColor: '#ff9966',
-                        data: [70, 90, 140, 120, 80, 60]
-                    }
-                ]
-            }
-        });
-
         function toggleSidebar() {
             document.querySelector('.sidebar').classList.toggle('active');
             document.querySelector('.main-content').classList.toggle('active');
