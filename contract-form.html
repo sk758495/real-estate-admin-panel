@@ -169,11 +169,47 @@
             <!-- Main content -->
             <main class="col-md-10 main-content">
                 <div class="dashboard-header sticky-top">
-                    <h2>Agent List</h2>
+                    <h2>Contract Form</h2>
                     <input type="text" class="form-control" placeholder="Search...">
                 </div>
-                <!-- body section -->
-              
+
+                <!-- Contract Form -->
+                <div class="container mt-4">
+                    <h3>Create New Contract</h3>
+                    <form>
+                        <div class="mb-3">
+                            <label for="propertyName" class="form-label">Property Name</label>
+                            <input type="text" class="form-control" id="propertyName" placeholder="Enter property name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="agentName" class="form-label">Agent Name</label>
+                            <input type="text" class="form-control" id="agentName" placeholder="Enter agent's name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="clientName" class="form-label">Client Name</label>
+                            <input type="text" class="form-control" id="clientName" placeholder="Enter client's name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="contractStart" class="form-label">Contract Start Date</label>
+                            <input type="date" class="form-control" id="contractStart" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="contractEnd" class="form-label">Contract End Date</label>
+                            <input type="date" class="form-control" id="contractEnd" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="contractDetails" class="form-label">Contract Details</label>
+                            <textarea class="form-control" id="contractDetails" rows="4" placeholder="Enter details of the contract" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit Contract</button>
+                    </form>
+                </div>
             </main>
         </div>
     </div>
